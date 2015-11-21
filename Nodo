@@ -34,3 +34,27 @@ package arbolbi;
     public Nodo getHojaIzqui() {
         return hojaizqui;
     }
+    
+    public void setHojaIzqui(Nodo hojaIzquierda) {
+        this.hojaizqui = hojaIzquierda;
+    }
+
+    public Nodo getHojaDere() {
+        return hojadere;
+    }
+
+    public void setHojaDere(Nodo hojaDerecha) {
+        this.hojadere = hojaDerecha;
+    }
+
+    Nodo hojaizqui() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    Nodo hojadere() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+}
+
+
