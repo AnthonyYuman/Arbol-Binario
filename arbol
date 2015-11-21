@@ -1,22 +1,47 @@
 import java.util.Scanner;
 
-public class Arbol {
+public class ArbolBi {
 
     private Nodo raiz;
 
-    public Arbol() {
+    public ArbolBi() {
  
     }
  
-    public Arbol( int valor ) {
+    public ArbolBi( int valor ) {
         this.raiz = new Nodo( valor );
-    }
- 
-    public Arbol( Nodo raiz ) {
-        this.raiz = raiz;
     }
  
    
     public Nodo getRaiz() {
         return raiz;
+    }
+ public void setRaiz(Nodo raiz) {
+        this.raiz = raiz;
+    }
+    
+    public ArbolBi( Nodo raiz ) {
+        this.raiz = raiz;
+    }
+    
+    private void addNodo( Nodo nodo, Nodo raiz ) {
+        System.out.printl("Ingrese Nodo");
+        Scanner leer = new Scanner(System.in);
+      
+        if ( raiz == null ) {
+           
+            raiz = nodo;
+        }
+        else {
+           
+            if ( nodo.getValor() <= raiz.getValor() ) {
+                
+                addNodo( nodo , raiz.getHojaIzquierda() );
+                
+            }
+            else {
+                
+                addNodo( nodo, raiz.getHojaDerecha() );
+            }
+        }
     }
