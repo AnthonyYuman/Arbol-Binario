@@ -1,0 +1,36 @@
+package arbolbi;
+
+ public class Nodo {
+
+    
+    private int valor;
+
+    Nodo Mayor;
+    Nodo hojaizqui;
+    Nodo hojadere;
+
+    
+    public Nodo(int valor) {
+        this.valor = valor;
+    }
+
+  
+    public void setValor(int valor) {
+        this.valor = valor;
+    }
+
+    public int getValor() {
+        return valor;
+    }
+
+    public Nodo getMayor() {
+        return Mayor;
+    }
+
+    public void setMayor(Nodo padre) {
+        this.Mayor = padre;
+    }
+
+    public Nodo getHojaIzqui() {
+        return hojaizqui;
+    }
