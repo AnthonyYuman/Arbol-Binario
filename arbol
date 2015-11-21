@@ -45,3 +45,143 @@ public class ArbolBi {
             }
         }
     }
+    public void addNodo( Nodo nodo ) {
+        System.out.println("añadir nodo:");
+        Scanner leer = new Scanner(System.in);
+        this.addNodo( nodo , this.raiz );
+    }
+ 
+    public boolean removeNodo( Nodo nodo ) {
+ 
+        System.out.println(Ingrese Nodo a Eliminar:);
+        Scanner leer = new Scanner(System.in);
+        boolean tieneNodoDerecha = nodo.getHojaDerecha() != null ? true : false;
+        boolean tieneNodoIzquierda = nodo.getHojaIzquierda() != null ? true : false;
+ 
+        
+        if (!tieneNodoDerecha && !tieneNodoIzquierda) {
+            return removeNodoCaso1( nodo );
+        }
+ 
+        
+        if ( tieneNodoDerecha && !tieneNodoIzquierda ) {
+            return removeNodoCaso2( nodo );
+        }
+ 
+        
+        if ( !tieneNodoDerecha && tieneNodoIzquierda ) {
+            return removeNodoCaso2( nodo );
+        }
+ 
+        
+        if ( tieneNodoDerecha && tieneNodoIzquierda ) {
+            return removeNodoCaso3( nodo );
+        }
+ 
+        return false;
+    }
+ 
+    private boolean removeNodoCaso1( Nodo nodo ) {
+        System.out.println("ingrese Nodo a Eliminar");
+        Scanner leer = new Scanner(System.in);
+        Nodo hijoIzquierdo = nodo.getPadre().getHojaIzquierda();
+        Nodo hijoDerecho =  nodo.getPadre().getHojaDerecha();
+ 
+        if ( hijoIzquierdo == nodo ) {
+            nodo.getPadre().setHojaIzquierda( null );
+            return true;
+        }
+ 
+        if ( hijoDerecho == nodo) {
+            nodo.getPadre().setHojaDerecha( null );
+            return true;
+        }
+ 
+        return false;
+    }
+    
+   private boolean removeNodoCaso2( Nodo nodo ) {
+        System.out.println("ingrese Nodo a Eliminar");
+        Scanner leer = new Scanner(System.in);
+        Nodo hijoIzquierdo = nodo.getPadre().getHojaIzquierda();
+        Nodo hijoDerecho = nodo.getPadre().getHojaDerecha();
+ 
+        
+        Nodo hijoActual = nodo.getHojaIzquierda() != null ? 
+                nodo.getHojaIzquierda() : nodo.getHojaDerecha();
+ 
+        if ( hijoIzquierdo == nodo ) {
+            nodo.getPadre().setHojaIzquierda( hijoActual );
+ 
+            
+            hijoActual.setPadre(nodo.getPadre());
+            nodo.setHojaDerecha(null);
+            nodo.setHojaIzquierda(null);
+ 
+            return true;
+        }
+ 
+        if ( hijoDerecho == nodo) {
+            nodo.getPadre().setHojaDerecha( hijoActual );
+ 
+            
+            hijoActual.setPadre(nodo.getPadre());
+            nodo.setHojaDerecha(null);
+            nodo.setHojaIzquierda(null);
+ 
+            return true;
+        } 
+ 
+        return false;
+    }
+    private boolean removeNodoCaso3( Nodo nodo ) {
+       System.out.println("ingrese Nodo a Eliminar");
+       Scanner leer = new Scanner(System.in);
+        Nodo nodoMasALaIzquierda = recorrerIzquierda( nodo.getHojaDerecha() );
+        if ( nodoMasALaIzquierda != null ) {
+            
+            nodo.setValor( nodoMasALaIzquierda.getValor() );
+            
+            removeNodo( nodoMasALaIzquierda );
+            return true;
+        }
+        return false;
+    }
+ 
+   
+    private Nodo recorrerIzquierda(Nodo nodo) {
+        if (nodo.getHojaIzquierda() != null) {
+            return recorrerIzquierda( nodo.getHojaIzquierda() );
+        }
+        return nodo;
+    }
+    void preorden(Nodo nodo){
+        if(nodo!=null)
+        {
+            System.out.print(nodo.Padre);
+            preorden(nodo.hojaIzquierda());
+            preorden(nodo.hojaDerecha())
+        }
+    }
+    void inorden(Nodo nodo){
+        if(nodo!=null)
+        {
+            System.out.print(nodo.hojaIzquierda);
+            inorden (nodo.padre);
+            inorden (nodo.hojaDerecha);
+        }
+    }
+    void postorden(Nodo nodo){
+        if(nodo!=null)
+        {
+            System.out.print(nodo.hojaIzquierda);
+            postorden (nodo.hojaDerecha);
+            postorden (nodo.padre);
+        }
+    }
+    
+ 
+  public static void main(String[] args) {
+  }
+}
+}
