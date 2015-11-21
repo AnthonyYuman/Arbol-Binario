@@ -1,60 +1,40 @@
-package arbolbi;
+class NodoArbol {
 
- public class Nodo {
+	//miembros de acceso
+	NodoArbol nodoizquierdo;
+	int datos;
+	NodoArbol nododerecho;
 
-    
-    private int valor;
+	//iniciar dato y hacer de este nodo un nodo hoja
+	public NodoArbol(int datosNodo)
+	{
+		datos = datosNodo;
+		nodoizquierdo = nododerecho = null; //el nodo no tiene hijos
+	}
 
-    Nodo Mayor;
-    Nodo hojaizqui;
-    Nodo hojadere;
+	//buscar punto de insercion  e insertar nodo nuevo
+	public synchronized void insertar(int valorInsertar)
+	{
+		//insertar en subarbol izquierdo
+		if (valorInsertar < datos){
 
-    
-    public Nodo(int valor) {
-        this.valor = valor;
-    }
+			//inserta nuevo nodoarbol
+			if (nodoizquierdo == null)
+				nodoizquierdo = new NodoArbol(valorInsertar);
+			else //continua recorriendo subarbol izquierdo
+				nodoizquierdo.insertar(valorInsertar);
+		}
 
-  
-    public void setValor(int valor) {
-        this.valor = valor;
-    }
+		//insertar nodo derecho
+		else if(valorInsertar > datos){
 
-    public int getValor() {
-        return valor;
-    }
-
-    public Nodo getMayor() {
-        return Mayor;
-    }
-
-    public void setMayor(Nodo padre) {
-        this.Mayor = padre;
-    }
-
-    public Nodo getHojaIzqui() {
-        return hojaizqui;
-    }
-    
-    public void setHojaIzqui(Nodo hojaIzquierda) {
-        this.hojaizqui = hojaIzquierda;
-    }
-
-    public Nodo getHojaDere() {
-        return hojadere;
-    }
-
-    public void setHojaDere(Nodo hojaDerecha) {
-        this.hojadere = hojaDerecha;
-    }
-
-    Nodo hojaizqui() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    Nodo hojadere() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-}
+		//insertar nuevo nodoarbol
+		if (nododerecho == null)
+			nododerecho = new NodoArbol(valorInsertar);
+		else //continua recorriendo subarbol derecho
+			nododerecho.insertar(valorInsertar);
+		}
+	
+        }}
 
 
